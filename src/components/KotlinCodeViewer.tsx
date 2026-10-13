@@ -423,23 +423,30 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
+      - name: Accept Android SDK Licenses
+        run: |
+          mkdir -p "$ANDROID_HOME/licenses" || true
+          echo "24333f8a63b1d99d6348476f654647c10659f61b" > "$ANDROID_HOME/licenses/android-sdk-license"
+          echo "84831b9409646a2b8e3f4a73729e618048b63063" >> "$ANDROID_HOME/licenses/android-sdk-license"
+          echo "d56f5187479451eabf01fb78af6dfcb131a6481e" >> "$ANDROID_HOME/licenses/android-sdk-license"
+          echo "859f317696f67ef3d7f30a50a5560e7834b43903" > "$ANDROID_HOME/licenses/android-sdk-arm-dbt-license"
+          echo "601085b94cd77f6b54f86e35a8db404779b4d164" > "$ANDROID_HOME/licenses/android-googletv-license"
+          echo "33b6a2b6492002031130688d0cc45e290ff47453" > "$ANDROID_HOME/licenses/google-gdk-license"
+          echo "e9acab5b5fbb560a72cfaecce273fd66e0ca7612" > "$ANDROID_HOME/licenses/mips-android-sysimage-license"
+          yes | sdkmanager --licenses > /dev/null 2>&1 || true
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.5'
 
-      - name: Ensure Wrapper Executable & Dependencies
+      - name: Prepare Gradle Wrapper
         run: |
           if [ -d "./android" ]; then
             cd android
           fi
-          mkdir -p gradle/wrapper
           if [ ! -f "gradle/wrapper/gradle-wrapper.jar" ]; then
-            echo "Downloading gradle-wrapper.jar..."
-            curl -sLo gradle/wrapper/gradle-wrapper.jar https://raw.githubusercontent.com/gradle/gradle/v8.5.0/gradle/wrapper/gradle-wrapper.jar || true
+            gradle wrapper --gradle-version 8.5 || true
           fi
           chmod +x ./gradlew || true
 
@@ -447,9 +454,9 @@ jobs:
         run: |
           if [ -d "./android" ] && [ -f "./android/gradlew" ]; then
             cd android
-            ./gradlew assembleDebug --stacktrace
+            ./gradlew assembleDebug --stacktrace --no-daemon
           else
-            ./gradlew assembleDebug --stacktrace
+            ./gradlew assembleDebug --stacktrace --no-daemon
           fi
 
       - name: Upload Debug APK Artifact
