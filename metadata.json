@@ -1,0 +1,6 @@
+{
+  "name": "ElectroAssistant SA & HVAC Field Suite",
+  "description": "South African Electrical & HVAC-R Engineering Field Suite compliant with SANS 10142-1/2/3. Features cable sizing, voltage drop calculator, digital CoC test verification, technical pinout library, and interactive diagnostic decision trees.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
