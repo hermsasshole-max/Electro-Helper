@@ -522,8 +522,7 @@ dependencies {
     path: 'android/app/src/main/AndroidManifest.xml',
     description: 'Android application manifest declaration with MainActivity launcher and Theme.',
     code: `<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.electroassistant.sa">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
         android:allowBackup="true"

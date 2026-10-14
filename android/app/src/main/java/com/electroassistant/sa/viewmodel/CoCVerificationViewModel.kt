@@ -167,11 +167,11 @@ class CoCVerificationViewModel : ViewModel() {
         sb.appendLine("======================================================================")
         sb.appendLine("   SOUTH AFRICAN SANS 10142-1 CERTIFICATE OF COMPLIANCE (CoC) REPORT")
         sb.appendLine("======================================================================")
-        sb.appendLine("CoC Number: \${state.certificateNumber}")
-        sb.appendLine("Contractor: \${state.contractorName} (Accreditation: \${state.accreditationNumber})")
-        sb.appendLine("Client:     \${state.clientName}")
-        sb.appendLine("Premises:   \${state.installationAddress}")
-        sb.appendLine("Supply:     \${state.supplyType} | Earthing: \${state.earthingSystem}")
+        sb.appendLine("CoC Number: ${state.certificateNumber}")
+        sb.appendLine("Contractor: ${state.contractorName} (Accreditation: ${state.accreditationNumber})")
+        sb.appendLine("Client:     ${state.clientName}")
+        sb.appendLine("Premises:   ${state.installationAddress}")
+        sb.appendLine("Supply:     ${state.supplyType} | Earthing: ${state.earthingSystem}")
         sb.appendLine("----------------------------------------------------------------------")
         sb.appendLine("FINAL SANS 10142 COMPLIANCE VERDICT: " +
                 if (state.isCoCCompliant) ">>> SANS 10142-1 COMPLIANT - APPROVED FOR CERTIFICATION <<<"

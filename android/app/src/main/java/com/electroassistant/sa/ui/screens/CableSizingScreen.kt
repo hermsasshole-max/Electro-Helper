@@ -84,7 +84,7 @@ fun CableSizingScreen() {
                             color = Color(0xFF38BDF8)
                         )
                         Row(
-                            verticalAlignment = Alignment.Baseline,
+                            verticalAlignment = Alignment.Bottom,
                             modifier = Modifier.padding(vertical = 4.dp)
                         ) {
                             Text(
